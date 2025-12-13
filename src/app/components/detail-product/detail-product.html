@@ -1,0 +1,9 @@
+<p>detail-product works!</p>
+  <h2>{{ product?.nombre }}</h2>
+  <img [src]="product?.imagen" [alt]="product?.nombre" />
+  <p><strong>Descripción:</strong> {{ product?.descripcion }}</p>
+  <p><strong>Marca:</strong> {{ product?.marca }}</p>
+  <p><strong>Precio:</strong> ${{ product?.precio }}</p> 
+
+
+  <a routerLink="/home">Volver al inicio</a>

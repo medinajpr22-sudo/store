@@ -1,0 +1,10 @@
+<section class="productos">
+  <h2>Zapatillas de Fútbol</h2>
+  <div class="productos-lista">
+    @for (product of product; track product.id) {
+    <app-product-card [Product]="product"></app-product-card>
+    } @empty {
+    <p>No hay productos disponibles.</p>
+    }
+  </div>
+</section>

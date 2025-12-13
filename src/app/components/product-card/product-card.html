@@ -1,0 +1,10 @@
+<div class="product-card">
+  <img [src]="Product.imagen" [alt]="Product.nombre" class="product-img" />
+  <h3>{{ Product.nombre }}</h3>
+  <p>{{ Product.descripcion }}</p>
+  <p><strong>Marca:</strong> {{ Product.marca }}</p>
+  <p><strong>Precio:</strong> ${{ Product.precio }}</p>
+  <button (click)="addToCart()">Agregar al carrito</button>
+  <a [routerLink]="['/home/detail-product', Product.id]" class="detalle-link">Ver detalle</a>
+ 
+</div>
