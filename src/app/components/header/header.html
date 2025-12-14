@@ -1,1 +1,25 @@
-<p>header works!</p>
+<nav class="flex items-center justify-between px-4 py-2 bg-white shadow-md">
+
+  <div class="flex items-center space-x-2">
+    <lucide-icon
+      [img]="StoreIcon"
+      class="w-6 h-6 text-green-600"
+    ></lucide-icon>
+
+    <a routerLink="/home" class="font-bold text-lg text-green-600">
+      Futbolito
+    </a>
+  </div>
+
+  <a
+    routerLink="/home/cart"
+    class="flex items-center space-x-2 text-gray-700 hover:text-green-600"
+  >
+    <lucide-icon
+      [img]="CartIcon"
+      class="w-5 h-5"
+    ></lucide-icon>
+    <span>Carrito</span>
+  </a>
+
+</nav>

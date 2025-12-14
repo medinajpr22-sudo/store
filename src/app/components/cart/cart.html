@@ -1,0 +1,164 @@
+<section class="max-w-6xl mx-auto px-4 py-10">
+  <!-- Título -->
+  <h2 class="text-3xl font-bold mb-8 flex items-center gap-3">
+    <lucide-icon [img]="CartIcon" class="w-8 h-8"></lucide-icon>
+    Carrito de compras
+  </h2>
+
+  @if (cartItems.length > 0) {
+
+  <div class="grid gap-8 lg:grid-cols-3">
+    <!-- LISTA DE PRODUCTOS -->
+    <div class="lg:col-span-2 space-y-6">
+      @for (item of cartItems; track item.id; let last = $last) {
+
+      <div
+        class="flex flex-col sm:flex-row gap-4 bg-white rounded-2xl p-4 shadow-md hover:shadow-lg transition"
+      >
+        <!-- Imagen -->
+        <img
+          [src]="item.imagen"
+          [alt]="item.nombre"
+          class="w-full sm:w-32 h-32 object-cover rounded-xl"
+        />
+
+        <!-- Info -->
+        <div class="flex-1 space-y-1">
+          <h3 class="text-lg font-semibold">
+            {{ item.nombre }}
+          </h3>
+
+          <p class="text-sm text-gray-500">
+            {{ item.marca }}
+          </p>
+
+          <p class="font-bold text-green-600">${{ item.precio | number : '1.2-2' }}</p>
+
+          @if (showQuantityControls) {
+          <div class="flex items-center gap-3 mt-2">
+            <button
+              (click)="decreaseQuantity(item.id)"
+              [disabled]="(item.cantidad || 1) <= 1"
+              class="w-9 h-9 rounded-lg border flex items-center justify-center hover:bg-gray-100 disabled:opacity-40"
+            >
+              <lucide-icon [img]="MinusIcon" class="w-4 h-4"></lucide-icon>
+            </button>
+
+            <span class="font-semibold">
+              {{ item.cantidad || 1 }}
+            </span>
+
+            <button
+              (click)="increaseQuantity(item.id)"
+              class="w-9 h-9 rounded-lg border flex items-center justify-center hover:bg-gray-100"
+            >
+              <lucide-icon [img]="PlusIcon" class="w-4 h-4"></lucide-icon>
+            </button>
+          </div>
+          }
+        </div>
+
+        <!-- Acciones -->
+        <div class="flex sm:flex-col justify-between items-end">
+          <button
+            (click)="removeFromCart(item.id)"
+            class="text-gray-400 hover:text-red-500"
+            aria-label="Eliminar"
+          >
+            <lucide-icon [img]="TrashIcon" class="w-5 h-5"></lucide-icon>
+          </button>
+
+          @if ((item.cantidad || 1) > 1) {
+          <p class="text-sm text-gray-500 mt-2">
+            Total:
+            <span class="font-semibold">
+              ${{ item.precio * (item.cantidad || 1) | number : '1.2-2' }}
+            </span>
+          </p>
+          }
+        </div>
+      </div>
+
+      @if (!last) {
+      <hr class="border-gray-200" />
+      } }
+    </div>
+
+    <!-- RESUMEN -->
+    <div class="bg-white rounded-2xl p-6 shadow-md h-fit sticky top-6">
+      <h3 class="text-xl font-semibold mb-4">Resumen</h3>
+
+      <div class="space-y-2 text-sm">
+        <div class="flex justify-between">
+          <span>Subtotal</span>
+          <span>${{ getSubtotal() | number : '1.2-2' }}</span>
+        </div>
+
+        <div class="flex justify-between">
+          <span>Envío</span>
+          <span>
+            @if (getShippingCost() === 0) {
+            <span class="text-green-600 font-semibold">Gratis</span>
+            } @else { ${{ getShippingCost() | number : '1.2-2' }}
+            }
+          </span>
+        </div>
+
+        <hr />
+
+        <div class="flex justify-between text-lg font-bold">
+          <span>Total</span>
+          <span>${{ getTotal() | number : '1.2-2' }}</span>
+        </div>
+      </div>
+
+      <!-- BOTONES -->
+      <div class="mt-6 space-y-3">
+        <button
+          routerLink="/products"
+          class="w-full py-2 rounded-xl border flex items-center justify-center gap-2 hover:bg-gray-100 transition"
+        >
+          <lucide-icon [img]="BackIcon" class="w-4 h-4"></lucide-icon>
+          Seguir comprando
+        </button>
+
+        <button
+          (click)="clearCart()"
+          class="w-full py-2 rounded-xl bg-gray-100 hover:bg-gray-200 flex items-center justify-center gap-2 transition"
+        >
+          <lucide-icon [img]="TrashIcon" class="w-4 h-4"></lucide-icon>
+          Vaciar carrito
+        </button>
+
+        <button
+          (click)="checkout()"
+          class="w-full py-3 rounded-xl bg-green-600 text-white font-semibold hover:bg-green-700 flex items-center justify-center gap-2 transition"
+        >
+          Finalizar compra
+          <lucide-icon [img]="NextIcon" class="w-4 h-4"></lucide-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  } @else {
+
+  <!-- CARRITO VACÍO -->
+  <div class="flex flex-col items-center justify-center text-center py-24 text-gray-500">
+    <lucide-icon [img]="CartIcon" class="w-16 h-16 mb-4"></lucide-icon>
+
+    <h3 class="text-xl font-semibold mb-2">Tu carrito está vacío</h3>
+
+    <p class="mb-6">Agrega productos para comenzar</p>
+
+    <button
+      routerLink="/products"
+      class="px-6 py-3 rounded-xl bg-green-600 text-white hover:bg-green-700 flex items-center gap-2 transition"
+    >
+      <lucide-icon [img]="BackIcon" class="w-4 h-4"></lucide-icon>
+      Ver productos
+    </button>
+  </div>
+
+  }
+</section>

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { Product } from '../../models/products.model';
+import { Component, inject } from '@angular/core';
+
+
 import { ProductService } from '../../services/product.service';
 import { ProductCard } from "../../components/product-card/product-card";
 
@@ -10,9 +11,10 @@ import { ProductCard } from "../../components/product-card/product-card";
   styleUrl: './card.css',
 })
 export class Card {
-  product: Product[] = [];
+private productService = inject(ProductService);
 
-  constructor(private productService: ProductService) {
-    this.product = this.productService.getProduct();
-  }
+  products = this.productService.products;
+
+
+
 }

@@ -1,9 +1,78 @@
-<p>detail-product works!</p>
-  <h2>{{ product?.nombre }}</h2>
-  <img [src]="product?.imagen" [alt]="product?.nombre" />
-  <p><strong>Descripción:</strong> {{ product?.descripcion }}</p>
-  <p><strong>Marca:</strong> {{ product?.marca }}</p>
-  <p><strong>Precio:</strong> ${{ product?.precio }}</p> 
+@if (product()) {
+<section class="max-w-5xl mx-auto px-4 py-10">
+  <div class="grid gap-8 md:grid-cols-2">
+    <!-- Imagen -->
+    <div class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition">
+      <img
+        [src]="product()!.imagen"
+        [alt]="product()!.nombre"
+        class="w-full h-96 object-cover hover:scale-105 transition duration-300"
+      />
+    </div>
 
+    <!-- Info -->
+    <div class="space-y-4">
+      <h1 class="text-3xl font-bold">
+        {{ product()!.nombre }}
+      </h1>
 
-  <a routerLink="/home">Volver al inicio</a>
+      <p class="text-gray-600">
+        {{ product()!.descripcion }}
+      </p>
+
+      <p class="text-2xl font-bold text-green-600">
+        {{ product()!.precio | currency : 'COP' }}
+      </p>
+
+      <div class="text-sm text-gray-500">
+        <span class="mr-2"
+          >Marca: <b>{{ product()!.marca }}</b></span
+        >
+        <span
+          >Tipo: <b class="capitalize">{{ product()!.tipo }}</b></span
+        >
+      </div>
+
+      <!-- Tallas -->
+      <div>
+        <h4 class="font-semibold mb-2">Tallas disponibles</h4>
+
+        <ul class="flex flex-wrap gap-2">
+          @for (talla of product()!.tallas; track talla) {
+          <li
+            class="px-4 py-2 border rounded-xl cursor-pointer hover:bg-green-600 hover:text-white transition"
+          >
+            {{ talla }}
+          </li>
+          }
+        </ul>
+      </div>
+
+      <!-- Acciones -->
+      <div class="flex gap-3 pt-4">
+        <button
+          class="flex-1 bg-green-600 text-white py-3 rounded-xl hover:bg-green-700 transition"
+        >
+          Agregar al carrito
+        </button>
+
+        <a
+          href="https://wa.me/57TU_NUMERO_AQUI"
+          target="_blank"
+          class="flex-1 text-center py-3 rounded-xl border border-green-600 text-green-600 hover:bg-green-600 hover:text-white transition"
+        >
+          Comprar por WhatsApp
+        </a>
+      </div>
+
+      <!-- Badge -->
+      <div class="inline-block mt-2 px-4 py-1 text-sm bg-green-100 text-green-700 rounded-full">
+        Entrega inmediata en Neiva
+      </div>
+    </div>
+  </div>
+</section>
+
+} @else {
+<p class="text-center text-gray-500 py-20">Producto no encontrado</p>
+}

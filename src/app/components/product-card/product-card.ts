@@ -1,7 +1,7 @@
-import { ProductCardService } from './../../services/product-card.service';
 import { Component, Input } from '@angular/core';
 import { Product } from '../../models/products.model';
-import { RouterLink } from "@angular/router";
+import { RouterLink } from '@angular/router';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-product-card',
@@ -10,13 +10,10 @@ import { RouterLink } from "@angular/router";
   styleUrl: './product-card.css',
 })
 export class ProductCard {
-  @Input() Product!:Product;
-  constructor(private ProductCardService: ProductCardService){} 
+  @Input() Product!: Product;
+  constructor(private cartService: CartService) {}
   addToCart() {
-    this.ProductCardService.addToCart(this.Product);
+    this.cartService.addToCart(this.Product);
     alert('Producto agregado al carrito');
   }
-
 }
-
- 
