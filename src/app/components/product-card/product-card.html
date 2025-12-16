@@ -1,14 +1,21 @@
 <div
-  class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+  class="bg-white rounded-2xl overflow-hidden shadow-md
+         hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
 >
-  <img [src]="Product.imagen" [alt]="Product.nombre" class="w-full h-52 object-cover" />
+  <!-- Imagen -->
+  <img
+    [src]="Product.imagen"
+    [alt]="Product.nombre"
+    class="w-full h-52 object-cover"
+  />
 
-  <div class="p-4 space-y-3">
-    <h3 class="text-lg font-semibold">
+  <!-- Contenido -->
+  <div class="p-4 space-y-4">
+    <h3 class="text-lg font-semibold text-gray-900">
       {{ Product.nombre }}
     </h3>
 
-    <p class="text-sm text-gray-600">
+    <p class="text-sm text-gray-600 line-clamp-2">
       {{ Product.descripcion }}
     </p>
 
@@ -16,20 +23,44 @@
       <span class="text-sm text-gray-500">
         {{ Product.marca }}
       </span>
-      <span class="text-lg font-bold text-green-600"> ${{ Product.precio }} </span>
+
+      <span class="text-xl font-bold text-green-600">
+        {{ Product.precio }}
+      </span>
     </div>
 
+    <!-- Acciones -->
     <div class="flex gap-2 pt-2">
+      <!-- Carrito -->
       <button
         (click)="addToCart()"
-        class="flex-1 bg-green-600 text-white py-2 rounded-xl hover:bg-green-700 transition"
+        class="flex-1 bg-green-600 text-white py-2 rounded-xl
+               hover:bg-green-700 transition font-medium"
       >
         Agregar
       </button>
 
+      <!-- WhatsApp -->
+      <button
+        (click)="buyByWhatsapp()"
+        class="flex-1 flex items-center justify-center gap-2
+               bg-green-500 text-white py-2 rounded-xl
+               hover:bg-green-600 transition font-medium"
+      >
+        <img
+          src="assets/icons/whatsapp.svg"
+          alt="WhatsApp"
+          class="w-5 h-5"
+        />
+        Comprar
+      </button>
+
+      <!-- Detalle -->
       <a
         [routerLink]="['/home/detail-product', Product.slug]"
-        class="flex-1 text-center py-2 rounded-xl border border-green-600 text-green-600 hover:bg-green-600 hover:text-white transition"
+        class="flex-1 text-center py-2 rounded-xl
+               border border-green-600 text-green-600
+               hover:bg-green-600 hover:text-white transition font-medium"
       >
         Ver detalle
       </a>

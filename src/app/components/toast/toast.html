@@ -1,5 +1,5 @@
 <!-- ====== Toast Section Start -->
-  <section class="bg-gray-2 py-[60px] dark:bg-dark">
+  <!-- <section class="bg-gray-2 py-[60px] dark:bg-dark">
     <div class="mx-auto px-4 sm:container">
       <div
         class="relative flex max-w-[422px] items-center rounded-lg border border-green-light-4 bg-white p-5 dark:border-green dark:bg-dark-2">
@@ -54,5 +54,27 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
   <!-- ====== Toast Section End -->
+
+  @if (toast()) {
+  <div
+    class="fixed bottom-6 right-6 z-50 flex items-center gap-3
+           px-5 py-4 rounded-xl shadow-xl text-white
+           animate-slide-in"
+    [ngClass]="{
+      'bg-green-600': toast()!.type === 'success',
+      'bg-red-600': toast()!.type === 'error',
+      'bg-blue-600': toast()!.type === 'info'
+    }"
+  >
+    <lucide-icon
+      [img]="icon() ?? undefined"
+      class="w-6 h-6"
+    ></lucide-icon>
+
+    <span class="text-sm font-medium">
+      {{ toast()!.message }}
+    </span>
+  </div>
+}
