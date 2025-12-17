@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 
 
-import { ProductService } from '../../services/product.service';
 import { ProductCard } from "../../components/product-card/product-card";
+import { ProductService } from '../../core/services/product.service';
 
 @Component({
   selector: 'app-card',

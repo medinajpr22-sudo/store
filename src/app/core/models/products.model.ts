@@ -4,7 +4,7 @@ export interface Product {
   slug: string;
   descripcion: string;
   precio: number;
-  imagen: string;
+  imagen: string[];
   marca: string;
 
   tipo: 'micro' | 'sintetica' | 'natural';

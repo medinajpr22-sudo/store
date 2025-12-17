@@ -1,8 +1,8 @@
 
 import { Component, computed } from '@angular/core';
-import { ToastService } from '../../services/toast.service';
-import { CheckCircle, Info, LucideAngularModule, XCircle } from 'lucide-angular';
+import { CheckCircle, Info, LucideAngularModule, ShoppingCart, XCircle } from 'lucide-angular';
 import { CommonModule } from '@angular/common';
+import { ToastService } from '../../core/services/toast.service';
 
 @Component({
   selector: 'app-toast',
@@ -12,6 +12,8 @@ import { CommonModule } from '@angular/common';
 })
 export class Toast {
 
+
+  readonly CartIcon = ShoppingCart;
     toast = computed(() => this.toastService.toast());
 
   icon = computed(() => {

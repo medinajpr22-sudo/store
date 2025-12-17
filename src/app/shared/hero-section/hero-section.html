@@ -1,1 +1,199 @@
-<p>hero-section works!</p>
+<section
+  class="relative min-h-screen text-white overflow-hidden flex items-center transition-all duration-1000"
+  [style.background]="'linear-gradient(135deg, ' + active.color + '05 0%, #000000 100%)'"
+>
+
+  <!-- Partículas de fondo dinámico -->
+  <div class="absolute inset-0 overflow-hidden">
+    <div class="particles-container absolute inset-0">
+      @for (particle of particles; track $index) {
+        <div 
+          class="absolute rounded-full"
+          [style]="particle"
+        ></div>
+      }
+    </div>
+  </div>
+
+  <!-- Efecto gradiente dinámico -->
+  <div
+    class="absolute inset-0 opacity-20 transition-all duration-1000"
+    [style.background]="'radial-gradient(circle at 70% 30%, ' + active.color + '40 0%, transparent 50%), radial-gradient(circle at 30% 70%, ' + active.color + '20 0%, transparent 50%)'"
+  ></div>
+
+  <!-- Líneas de fondo -->
+  <div class="absolute inset-0 opacity-5">
+    <div class="absolute top-0 left-0 right-0 h-px" [style.background]="'linear-gradient(90deg, transparent, ' + active.color + ', transparent)'"></div>
+    <div class="absolute left-0 top-0 bottom-0 w-px" [style.background]="'linear-gradient(180deg, transparent, ' + active.color + ', transparent)'"></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+    <!-- Contenido de texto -->
+    <div class="space-y-8 animate-fade-in-up">
+      <!-- Badge con efecto neón -->
+      <div class="relative inline-block">
+        <span
+          class="relative inline-block px-6 py-2 text-sm font-bold rounded-full backdrop-blur-sm z-10"
+          [style.background]="active.color + '20'"
+          [style.color]="active.color"
+          [style.boxShadow]="'0 0 20px ' + active.color + '40'"
+        >
+          Nuevo lanzamiento exclusivo
+        </span>
+        <span 
+          class="absolute inset-0 rounded-full blur-md opacity-60"
+          [style.background]="active.color"
+        ></span>
+      </div>
+
+      <!-- Título principal -->
+      <div class="space-y-4">
+        <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold leading-tight tracking-tight">
+          <span class="block text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400">
+            Eleva tu
+          </span>
+          <span 
+            class="block font-black bg-gradient-to-r from-white via-white to-white bg-clip-text text-transparent drop-shadow-lg"
+            [style.textShadow]="'0 0 30px ' + active.color"
+          >
+            {{ active.title }}
+          </span>
+        </h1>
+
+        <!-- Subtítulo -->
+        <p class="text-xl text-gray-300 max-w-lg leading-relaxed">
+          Experimenta la combinación perfecta entre innovación, confort y estilo.
+          Tecnología de vanguardia para un rendimiento excepcional.
+        </p>
+      </div>
+
+      <!-- Precio y descuento -->
+      <div class="flex items-center gap-4">
+        <span class="text-3xl font-bold">$129.99</span>
+        <span class="px-3 py-1 text-sm font-semibold rounded-full bg-red-500/20 text-red-300 line-through">
+          $159.99
+        </span>
+        <span class="px-3 py-1 text-sm font-semibold rounded-full bg-green-500/20 text-green-300">
+          -20% OFF
+        </span>
+      </div>
+
+      <!-- Botones mejorados -->
+      <div class="flex flex-col sm:flex-row gap-4 pt-6">
+        <button
+          class="group relative flex items-center justify-center gap-3 px-8 py-4 rounded-2xl font-bold transition-all duration-300 overflow-hidden hover:scale-105 active:scale-95"
+          [style.background]="'linear-gradient(135deg, ' + active.color + ' 0%, ' + darkenColor(active.color, 20) + ' 100%)'"
+          [style.boxShadow]="'0 10px 30px ' + active.color + '60'"
+        >
+          <span class="relative z-10 flex items-center gap-3">
+            <lucide-icon [img]="ShoppingCart" class="w-5 h-5"></lucide-icon>
+            Comprar ahora
+          </span>
+          <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+        </button>
+
+      
+      </div>
+
+      <!-- Características -->
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 pt-8">
+        @for (feature of features; track feature.text) {
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg flex items-center justify-center" [style.background]="active.color + '20'">
+              <lucide-icon [img]="feature.icon" [size]="16" [style.color]="active.color"></lucide-icon>
+            </div>
+            <span class="text-sm text-gray-300">{{ feature.text }}</span>
+          </div>
+        }
+      </div>
+
+      <!-- Selector de variantes mejorado -->
+      <div class="pt-8">
+        <p class="text-gray-400 mb-4">Selecciona tu color:</p>
+        <div class="flex gap-3 flex-wrap">
+          @for (v of variants; track v.image) {
+            <button
+              (click)="setVariant(v)"
+              class="group relative flex flex-col items-center gap-2 transition-all duration-300"
+            >
+              <div class="relative">
+                <img
+                  [src]="v.thumb"
+                  class="w-20 h-20 rounded-xl object-cover border-4 transition-all duration-300 transform group-hover:scale-110 group-hover:rotate-3"
+                  [style.borderColor]="v === active ? active.color : 'transparent'"
+                  [style.boxShadow]="v === active ? '0 10px 25px ' + active.color + '50' : 'none'"
+                />
+                @if (v === active) {
+                  <div class="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-white flex items-center justify-center">
+                    <div class="w-3 h-3 rounded-full" [style.background]="active.color"></div>
+                  </div>
+                }
+              </div>
+              <span class="text-xs font-medium text-gray-300 group-hover:text-white transition-colors">
+                {{ v.title.split(' ')[0] }}
+              </span>
+            </button>
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- Imagen del producto -->
+    <div class="relative flex justify-center items-center lg:h-screen lg:py-20 perspective">
+      <!-- Efecto de resplandor dinámico -->
+      <div class="absolute">
+        <div 
+          class="absolute w-96 h-96 rounded-full blur-3xl opacity-30 transition-all duration-1000"
+          [style.background]="active.color"
+        ></div>
+        <div 
+          class="absolute w-80 h-80 rounded-full blur-2xl opacity-20 transition-all duration-1000"
+          [style.background]="active.color"
+        ></div>
+      </div>
+
+      <!-- Contenedor de la imagen con efectos 3D -->
+      <div class="relative transform-style-3d transition-transform duration-1000 hover:rotate-y-10">
+        <img
+          [src]="active.image"
+          class="relative w-[500px] max-w-full
+                 rotate-[-18deg]
+                 drop-shadow-[0_40px_60px_rgba(0,0,0,0.9)]
+                 animate-float-slow
+                 transition-all duration-1000
+                 hover:drop-shadow-[0_60px_80px_var(--tw-shadow-color)]"
+          [style]="'--tw-shadow-color: ' + active.color + '80'"
+        />
+        
+        <!-- Efecto de reflexión -->
+        <div 
+          class="absolute -bottom-24 left-1/2 transform -translate-x-1/2 w-3/4 h-32 bg-gradient-to-t from-black/50 to-transparent blur-lg opacity-50"
+          [style.mask]="'linear-gradient(to bottom, transparent, black)'"
+        ></div>
+      </div>
+
+      <!-- Indicador de rotación -->
+      <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex items-center gap-2 text-sm text-gray-400 animate-pulse">
+        <lucide-icon [img]="RotateCw" [size]="16"></lucide-icon>
+        <span>Gira para ver detalles</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Navegación entre variantes -->
+  <button
+    (click)="prevVariant()"
+    class="absolute left-6 top-1/2 transform -translate-y-1/2 w-12 h-12 rounded-full bg-black/30 backdrop-blur-sm border border-gray-700 flex items-center justify-center hover:bg-black/50 transition-all z-20"
+  >
+    <lucide-icon [img]="ChevronLeft" [size]="24"></lucide-icon>
+  </button>
+  
+  <button
+    (click)="nextVariant()"
+    class="absolute right-6 top-1/2 transform -translate-y-1/2 w-12 h-12 rounded-full bg-black/30 backdrop-blur-sm border border-gray-700 flex items-center justify-center hover:bg-black/50 transition-all z-20"
+  >
+    <lucide-icon [img]="ChevronRight" [size]="24"></lucide-icon>
+  </button>
+</section>

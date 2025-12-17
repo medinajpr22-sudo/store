@@ -1,0 +1,79 @@
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0) rotate(-18deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(-15deg);
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes particle-float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(-20px) translateX(10px);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 8s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 1s ease-out forwards;
+}
+
+.perspective {
+  perspective: 1500px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.hover\:rotate-y-10:hover {
+  transform: rotateY(10deg);
+}
+
+/* Partículas animadas */
+.particles-container div {
+  animation: particle-float var(--duration) ease-in-out infinite;
+  animation-delay: var(--delay);
+}
+
+/* Scroll personalizado */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--active-color), transparent);
+  border-radius: 4px;
+}
+
+/* Mejoras de responsividad */
+@media (max-width: 1024px) {
+  .perspective {
+    perspective: 1000px;
+  }
+  
+  .animate-float-slow {
+    animation: float-slow 10s ease-in-out infinite;
+  }
+}

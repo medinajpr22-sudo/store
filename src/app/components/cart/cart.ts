@@ -1,11 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { CartService } from '../../services/cart.service';
 
 import { Subscription } from 'rxjs';
-import { Product } from '../../models/products.model';
+import { Product } from '../../core/models/products.model';
 import { ArrowLeft, ArrowRight, Minus, Plus, ShoppingCart, Trash2, LucideAngularModule } from 'lucide-angular';
+import { CartService } from '../../core/services/cart.service';
 
 @Component({
   selector: 'app-cart',

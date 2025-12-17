@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { Product } from '../../models/products.model';
+import { Product } from '../../core/models/products.model';
 import { RouterLink } from '@angular/router';
-import { CartService } from '../../services/cart.service';
+
 import { LucideAngularModule } from 'lucide-angular';
-import { ToastService } from '../../services/toast.service';
+import { ToastService } from '../../core/services/toast.service';
+import { CartService } from '../../core/services/cart.service';
 
 @Component({
   selector: 'app-product-card',
@@ -17,7 +18,7 @@ export class ProductCard {
   addToCart() {
     this.cartService.addToCart(this.Product);
 
-    this.toastService.show('Producto agregado al carrito 🛒', 'success');
+    this.toastService.show('Producto agregado al carrito', 'success');
   }
 
   buyByWhatsapp() {
