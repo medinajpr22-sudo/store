@@ -1,3 +1,6 @@
+<!-- Breadcrumb -->
+<app-breadcrumb></app-breadcrumb>
+
 @if (product()) {
 <!-- Detail Product con estilos originales de microsport -->
 <section class="product-detail">
@@ -7,7 +10,11 @@
       <div class="detail-image-section">
         <!-- Imagen principal -->
         <div class="main-image">
-          <img [src]="selectedImage() ?? product()!.imagen[0]" [alt]="product()!.nombre" />
+          <img
+            [src]="selectedImage() ?? product()!.imagen[0]"
+            [alt]="product()!.nombre"
+            loading="lazy"
+          />
         </div>
 
         <!-- Miniaturas -->
@@ -19,7 +26,7 @@
             [class.active]="img === (selectedImage() ?? product()!.imagen[0])"
             (click)="selectImage(img)"
           >
-            <img [src]="img" [alt]="'Imagen ' + (i + 1)" />
+            <img [src]="img" [alt]="'Imagen ' + (i + 1)" loading="lazy" />
           </div>
           }
         </div>
@@ -131,7 +138,6 @@
   </div>
 </section>
 } @else {
-<div class="container" style="padding: 4rem 0; text-align: center">
-  <p style="color: var(--text-secondary)">Producto no encontrado</p>
-</div>
+<!-- Skeleton Loader mientras carga -->
+<app-skeleton type="product-detail"></app-skeleton>
 }

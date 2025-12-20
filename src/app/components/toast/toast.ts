@@ -1,6 +1,5 @@
-
 import { Component, computed } from '@angular/core';
-import { CheckCircle, Info, LucideAngularModule, ShoppingCart, XCircle } from 'lucide-angular';
+import { CheckCircle, Info, LucideAngularModule, XCircle, AlertTriangle, X } from 'lucide-angular';
 import { CommonModule } from '@angular/common';
 import { ToastService } from '../../core/services/toast.service';
 
@@ -11,22 +10,17 @@ import { ToastService } from '../../core/services/toast.service';
   styleUrl: './toast.css',
 })
 export class Toast {
+  readonly CheckCircleIcon = CheckCircle;
+  readonly XCircleIcon = XCircle;
+  readonly InfoIcon = Info;
+  readonly AlertTriangleIcon = AlertTriangle;
+  readonly XIcon = X;
 
-
-  readonly CartIcon = ShoppingCart;
-    toast = computed(() => this.toastService.toast());
-
-  icon = computed(() => {
-    const toast = this.toast();
-    if (!toast) return null;
-
-    return {
-      success: CheckCircle,
-      error: XCircle,
-      info: Info,
-    }[toast.type ?? 'success'];
-  });
+  toast = computed(() => this.toastService.toast());
 
   constructor(private toastService: ToastService) {}
 
+  closeToast() {
+    this.toastService.hide();
+  }
 }

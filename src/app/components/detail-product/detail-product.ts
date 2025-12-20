@@ -5,11 +5,13 @@ import { Product } from '../../core/models/products.model';
 import { ProductService } from '../../core/services/product.service';
 import { CartService } from '../../core/services/cart.service';
 import { ToastService } from '../../core/services/toast.service';
+import { BreadcrumbComponent } from '../../shared/breadcrumb/breadcrumb';
+import { SkeletonComponent } from '../../shared/skeleton/skeleton';
 
 @Component({
   selector: 'app-detail-product',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, BreadcrumbComponent, SkeletonComponent],
   templateUrl: './detail-product.html',
   styleUrl: './detail-product.css',
 })

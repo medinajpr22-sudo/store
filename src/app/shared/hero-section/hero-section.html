@@ -72,6 +72,8 @@
             <img
               [src]="activeProduct()!.imagen[0]"
               [alt]="activeProduct()!.nombre"
+              loading="eager"
+              fetchpriority="high"
               class="hero-product-img"
             />
           </div>
@@ -94,7 +96,7 @@
             activeProduct()?.id === product.id ? getProductColor(activeProduct()) : 'transparent'
           "
         >
-          <img [src]="product.imagen[0]" [alt]="product.nombre" />
+          <img [src]="product.imagen[0]" [alt]="product.nombre" loading="lazy" />
           <span class="thumbnail-name">{{ product.marca }}</span>
         </button>
         }
