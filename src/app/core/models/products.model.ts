@@ -13,6 +13,8 @@ export interface Product {
 
   stock: number;
 
-  // para carrito / pedido (aunque sea por WhatsApp)
   cantidad?: number;
+  color?: string;
+  tagline?: string;
+  destacado?: boolean;
 }

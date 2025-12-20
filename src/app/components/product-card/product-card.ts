@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Product } from '../../core/models/products.model';
 import { RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 import { LucideAngularModule } from 'lucide-angular';
 import { ToastService } from '../../core/services/toast.service';
@@ -8,7 +9,7 @@ import { CartService } from '../../core/services/cart.service';
 
 @Component({
   selector: 'app-product-card',
-  imports: [RouterLink, LucideAngularModule],
+  imports: [RouterLink, LucideAngularModule, CommonModule],
   templateUrl: './product-card.html',
   styleUrl: './product-card.css',
 })

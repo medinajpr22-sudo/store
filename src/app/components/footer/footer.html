@@ -1,66 +1,53 @@
-<footer class="bg-white border-t border-gray-100">
-  <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-
-    <!-- TOP -->
-    <div class="grid grid-cols-1 gap-12 lg:grid-cols-5">
-
-      <!-- BRAND -->
-      <div class="lg:col-span-2">
-        <div class="flex items-center gap-2 text-green-600">
-          <lucide-icon [img]="ShoppingCartIcon" class="w-7 h-7"></lucide-icon>
-          <span class="text-xl font-bold">Futbolito</span>
+<!-- Footer con estilos originales de microsport -->
+<footer class="footer" id="contact">
+  <div class="container">
+    <div class="footer-content">
+      <!-- Columna 1: Logo y Redes -->
+      <div class="footer-col">
+        <div class="footer-logo">
+          <i class="fas fa-futbol"></i>
+          <span>MICROSPORT</span>
         </div>
-
-        <p class="mt-4 text-sm text-gray-500 max-w-md">
-          Tu tienda online de zapatillas de fútbol. Compra fácil, rápido y directo por WhatsApp.
-        </p>
+        <p>Tu destino #1 para zapatillas de microfútbol premium.</p>
+        
       </div>
 
-      <!-- LINKS -->
-      <div>
-        <p class="font-medium text-gray-900">Tienda</p>
-        <ul class="mt-4 space-y-3 text-sm">
-          <li><a routerLink="/products" class="text-gray-600 hover:text-green-600">Productos</a></li>
-          <li><a routerLink="/cart" class="text-gray-600 hover:text-green-600">Carrito</a></li>
-          <li><a href="#" class="text-gray-600 hover:text-green-600">Ofertas</a></li>
+      <!-- Columna 2: Enlaces Rápidos -->
+      <div class="footer-col">
+        <h3>Enlaces Rápidos</h3>
+        <ul>
+          <li><a routerLink="/home">Inicio</a></li>
+          <li><a href="#products">Productos</a></li>
+          <li><a href="#about">Sobre Nosotros</a></li>
+          <li><a href="#contact">Contacto</a></li>
         </ul>
       </div>
 
-      <div>
-        <p class="font-medium text-gray-900">Soporte</p>
-        <ul class="mt-4 space-y-3 text-sm">
-          <li><a href="#" class="text-gray-600 hover:text-green-600">Contacto</a></li>
-          <li><a href="#" class="text-gray-600 hover:text-green-600">Preguntas frecuentes</a></li>
-          <li><a href="#" class="text-gray-600 hover:text-green-600">Envíos</a></li>
+      <!-- Columna 3: Ayuda -->
+      <div class="footer-col">
+        <h3>Ayuda</h3>
+        <ul>
+          <li><a href="#">Envíos</a></li>
+          <li><a href="#">Devoluciones</a></li>
+          <li><a href="#">Tallas</a></li>
+          <li><a href="#">FAQ</a></li>
         </ul>
       </div>
 
-      
+      <!-- Columna 4: Contacto -->
+      <div class="footer-col">
+        <h3>Contacto</h3>
+        <ul class="contact-info">
+          <li><i class="fas fa-phone"></i> +57 123 456 7890</li>
+          <li><i class="fas fa-envelope"></i> info@microsport.com</li>
+          <li><i class="fas fa-map-marker-alt"></i> Bogotá, Colombia</li>
+        </ul>
+      </div>
     </div>
 
-    <!-- BOTTOM -->
-    <div class="mt-12 flex flex-col gap-6 border-t border-gray-100 pt-8 sm:flex-row sm:items-center sm:justify-between">
-
-      <p class="text-xs text-gray-500">
-        © 2025 Futbolito. Todos los derechos reservados.
-      </p>
-
-      <!-- SOCIAL -->
-      <div class="flex gap-5 text-gray-500">
-        <a href="#" class="hover:text-green-600" aria-label="Facebook">
-          <lucide-icon [img]="FacebookIcon" class="w-5 h-5"></lucide-icon>
-        </a>
-
-        <a href="#" class="hover:text-green-600" aria-label="Instagram">
-          <lucide-icon [img]="InstagramIcon" class="w-5 h-5"></lucide-icon>
-        </a>
-
-        <a href="#" class="hover:text-green-600" aria-label="Twitter">
-          <lucide-icon [img]="TwitterIcon" class="w-5 h-5"></lucide-icon>
-        </a>
-
-      
-      </div>
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <p>&copy; 2025 Microsport. Todos los derechos reservados.</p>
     </div>
   </div>
 </footer>

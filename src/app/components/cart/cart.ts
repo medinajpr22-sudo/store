@@ -4,7 +4,15 @@ import { RouterModule } from '@angular/router';
 
 import { Subscription } from 'rxjs';
 import { Product } from '../../core/models/products.model';
-import { ArrowLeft, ArrowRight, Minus, Plus, ShoppingCart, Trash2, LucideAngularModule } from 'lucide-angular';
+import {
+  ArrowLeft,
+  ArrowRight,
+  Minus,
+  Plus,
+  ShoppingCart,
+  Trash2,
+  LucideAngularModule,
+} from 'lucide-angular';
 import { CartService } from '../../core/services/cart.service';
 
 @Component({
@@ -52,23 +60,21 @@ export default class Cart implements OnInit, OnDestroy {
   }
 
   clearCart(): void {
-    this.cartService.clearCart();
+    if (confirm('¿Estás seguro de que deseas vaciar el carrito?')) {
+      this.cartService.clearCart();
+    }
   }
 
   getSubtotal(): number {
-    return this.cartItems.reduce((sum, item) => {
-      return sum + item.precio * (item.cantidad || 1);
-    }, 0);
+    return this.cartService.getSubtotal();
   }
 
   getShippingCost(): number {
-    const subtotal = this.getSubtotal();
-    // Envío gratis si el subtotal es mayor a $100
-    return subtotal > 100 ? 0 : 10;
+    return this.cartService.getShippingCost();
   }
 
   getTotal(): number {
-    return this.getSubtotal() + this.getShippingCost();
+    return this.cartService.getTotal();
   }
 
   checkout(): void {
@@ -77,14 +83,50 @@ export default class Cart implements OnInit, OnDestroy {
       return;
     }
 
-    // Aquí puedes implementar la lógica de checkout
-    console.log('Procediendo al checkout:', this.cartItems);
-    alert(`Total a pagar: $${this.getTotal().toFixed(2)}`);
+    // Generar mensaje para WhatsApp
+    let mensaje = '🛒 *PEDIDO MICROSPORT*\n\n';
+    mensaje += '📦 *PRODUCTOS:*\n';
+    mensaje += '━━━━━━━━━━━━━━━━\n\n';
 
-    // Ejemplo: Redirigir a página de checkout
-    // this.router.navigate(['/checkout']);
+    // Agregar cada producto
+    this.cartItems.forEach((item, index) => {
+      const cantidad = item.cantidad || 1;
+      const precioTotal = item.precio * cantidad;
 
-    // O limpiar el carrito después del checkout simulado
-    // this.cartService.clearCart();
+      mensaje += `${index + 1}. *${item.nombre}*\n`;
+      mensaje += `   Marca: ${item.marca}\n`;
+      mensaje += `   Cantidad: ${cantidad}\n`;
+      mensaje += `   Precio unitario: $${item.precio.toFixed(2)}\n`;
+      mensaje += `   Subtotal: $${precioTotal.toFixed(2)}\n\n`;
+    });
+
+    // Agregar resumen
+    const subtotal = this.getSubtotal();
+    const envio = this.getShippingCost();
+    const total = this.getTotal();
+
+    mensaje += '━━━━━━━━━━━━━━━━\n';
+    mensaje += '💰 *RESUMEN:*\n\n';
+    mensaje += `Subtotal: $${subtotal.toFixed(2)}\n`;
+    mensaje += `Envío: ${envio === 0 ? 'GRATIS ✅' : '$' + envio.toFixed(2)}\n`;
+    mensaje += `━━━━━━━━━━━━━━━━\n`;
+    mensaje += `*TOTAL: $${total.toFixed(2)}*\n\n`;
+    
+
+    // Codificar mensaje para URL
+    const mensajeCodificado = encodeURIComponent(mensaje);
+
+    // Número de WhatsApp (CAMBIA ESTE NÚMERO POR EL TUYO)
+    const numeroWhatsApp = '3192575612'; // Formato: código país + número sin espacios ni signos
+
+    // Crear URL de WhatsApp
+    const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`;
+
+    // Abrir WhatsApp
+    window.open(urlWhatsApp, '_blank');
+
+    // Opcional: Limpiar el carrito después de enviar
+    // Si deseas que se limpie automáticamente, descomenta la siguiente línea:
+     this.cartService.clearCart();
   }
 }

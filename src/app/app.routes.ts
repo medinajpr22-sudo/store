@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { LayoutLanding } from './shared/layout-landing/layout-landing';
 import { Landing } from './landing/landing';
+import { NotFoundPage } from './shared/not-found-page/not-found-page';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -31,5 +32,5 @@ export const routes: Routes = [
   //       import('./auth/login/login.component').then((c) => c.LoginComponent),
   //   },
 
-  // { path: '**', component: PageNotFoundComponent },
+   { path: '**', component: NotFoundPage },
 ];

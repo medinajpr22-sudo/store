@@ -1,0 +1,357 @@
+/* Product Detail Styles - Original Microsport */
+.product-detail {
+    padding: 5rem 0;
+    background: var(--pure-black);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.detail-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+/* Sección de imagen */
+.detail-image-section {
+    position: sticky;
+    top: 100px;
+}
+
+.main-image {
+    width: 100%;
+    height: 500px;
+    background: linear-gradient(135deg, rgba(20, 20, 20, 1) 0%, rgba(10, 10, 10, 1) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.main-image:hover img {
+    transform: scale(1.05);
+}
+
+.image-thumbnails {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.thumbnail {
+    width: 80px;
+    height: 80px;
+    background: var(--card-bg);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: var(--transition);
+    overflow: hidden;
+}
+
+.thumbnail.active {
+    border-color: var(--neon-yellow);
+    box-shadow: 0 0 15px rgba(204, 255, 0, 0.3);
+}
+
+.thumbnail:hover {
+    border-color: var(--neon-yellow);
+}
+
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Sección de información */
+.detail-info-section {
+    color: var(--text-primary);
+}
+
+.detail-category {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+}
+
+.detail-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.detail-description {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    line-height: 1.8;
+    font-size: 1rem;
+}
+
+.detail-price {
+    font-family: 'Anton', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: var(--neon-yellow);
+    margin-bottom: 2rem;
+    letter-spacing: 1px;
+}
+
+/* Selectores */
+.size-selector,
+.color-selector,
+.quantity-selector {
+    margin-bottom: 1.5rem;
+}
+
+.size-selector h3,
+.color-selector h3,
+.quantity-selector h3 {
+    font-family: 'Anton', sans-serif;
+    font-size: 0.875rem;
+    color: var(--neon-yellow);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+}
+
+.size-options,
+.color-options {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.size-option,
+.color-option {
+    padding: 0.85rem 1.5rem;
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.size-option:hover,
+.color-option:hover {
+    border-color: var(--neon-yellow);
+    background: rgba(204, 255, 0, 0.05);
+}
+
+.size-option.selected,
+.color-option.selected {
+    background: var(--neon-yellow);
+    color: var(--pure-black);
+    border-color: var(--neon-yellow);
+    font-family: 'Anton', sans-serif;
+}
+
+/* Cantidad */
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.quantity-btn {
+    width: 45px;
+    height: 45px;
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0;
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quantity-btn:hover {
+    background: var(--neon-yellow);
+    color: var(--pure-black);
+    border-color: var(--neon-yellow);
+}
+
+.quantity-value {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    min-width: 40px;
+    text-align: center;
+}
+
+/* Botones de acción */
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.btn-add-cart,
+.btn-whatsapp {
+    width: 100%;
+    padding: 1.25rem 2rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-family: 'Anton', sans-serif;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    transform: skewX(-8deg);
+}
+
+.btn-add-cart span,
+.btn-whatsapp span,
+.btn-add-cart svg,
+.btn-whatsapp svg {
+    transform: skewX(8deg);
+}
+
+.btn-add-cart {
+    background: var(--neon-yellow);
+    color: var(--pure-black);
+    box-shadow: var(--shadow-neon);
+}
+
+.btn-add-cart:hover {
+    transform: skewX(-12deg) translateY(-2px);
+    box-shadow: var(--shadow-neon-strong);
+    background: #E0FF33;
+}
+
+.btn-whatsapp {
+    background: #25D366;
+    color: white;
+    box-shadow: 0 0 30px rgba(37, 211, 102, 0.4);
+}
+
+.btn-whatsapp:hover {
+    transform: skewX(-12deg) translateY(-2px);
+    box-shadow: 0 0 40px rgba(37, 211, 102, 0.6);
+    background: #20BA5A;
+}
+
+.btn-whatsapp:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 50px rgba(37, 211, 102, 0.6);
+    background: #20bd5a;
+}
+
+.btn-add-cart i,
+.btn-whatsapp i {
+    font-size: 1.25rem;
+}
+
+/* Disponibilidad */
+.availability {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.availability-label {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.availability-value {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.25rem;
+    color: var(--neon-yellow);
+    letter-spacing: 1px;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+    .detail-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .detail-image-section {
+        position: relative;
+        top: 0;
+    }
+
+    .main-image {
+        height: 350px;
+    }
+
+    .detail-title {
+        font-size: 2rem;
+    }
+
+    .detail-price {
+        font-size: 2rem;
+    }
+
+    .action-buttons {
+        position: sticky;
+        bottom: 0;
+        background: var(--pure-black);
+        padding: 1rem 0;
+        z-index: 100;
+    }
+}
+
+@media (max-width: 768px) {
+    .product-detail {
+        padding: 2rem 0;
+    }
+
+    .main-image {
+        height: 280px;
+    }
+
+    .detail-title {
+        font-size: 1.75rem;
+    }
+
+    .size-option {
+        padding: 0.7rem 1.2rem;
+    }
+
+    .btn-add-cart,
+    .btn-whatsapp {
+        padding: 1rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}

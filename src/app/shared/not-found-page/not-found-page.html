@@ -1,0 +1,60 @@
+<section class="not-found-section">
+  <!-- Fondo animado -->
+  <div class="not-found-background">
+    <div class="grid-overlay"></div>
+  </div>
+
+  <div class="container">
+    <div class="not-found-content">
+      <!-- Número 404 grande -->
+      <div class="error-code">
+        <span class="number-4">4</span>
+        <div class="ball-container">
+          <lucide-icon [img]="CircleDotIcon" class="ball"></lucide-icon>
+        </div>
+        <span class="number-4">4</span>
+      </div>
+
+      <!-- Título -->
+      <h1 class="error-title">¡FUERA DE <span class="gradient-text">JUEGO!</span></h1>
+
+      <!-- Descripción -->
+      <p class="error-description">
+        La página que buscas no existe o fue movida.
+        <br />
+        ¡Pero no te preocupes, tenemos productos increíbles esperándote!
+      </p>
+
+      <!-- Estadísticas divertidas -->
+      <div class="error-stats">
+        <div class="stat">
+          <lucide-icon [img]="AlertTriangleIcon" class="stat-icon"></lucide-icon>
+          <span>Error 404</span>
+        </div>
+        <div class="stat">
+          <lucide-icon [img]="SearchIcon" class="stat-icon"></lucide-icon>
+          <span>Página no encontrada</span>
+        </div>
+      </div>
+
+      <!-- Botones -->
+      <div class="error-actions">
+        <a routerLink="/home" class="btn btn-primary">
+          <lucide-icon [img]="HomeIcon"></lucide-icon>
+          <span>Volver al inicio</span>
+        </a>
+        <a routerLink="/home/cart" class="btn btn-secondary">
+          <lucide-icon [img]="ShoppingCartIcon"></lucide-icon>
+          <span>Ver carrito</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Decoración de balones flotantes -->
+  <div class="floating-balls">
+    <lucide-icon [img]="CircleDotIcon" class="ball-1"></lucide-icon>
+    <lucide-icon [img]="CircleDotIcon" class="ball-2"></lucide-icon>
+    <lucide-icon [img]="CircleDotIcon" class="ball-3"></lucide-icon>
+  </div>
+</section>
