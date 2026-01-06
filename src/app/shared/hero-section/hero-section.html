@@ -52,7 +52,6 @@
         <div class="hero-stats">
           <div class="stat">
             <h3>1000+</h3>
-            <p>Clientes Satisfechos</p>
           </div>
           <div class="stat">
             <h3>50+</h3>
@@ -78,28 +77,28 @@
             />
           </div>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- Selector de productos destacados (miniaturas) -->
-  <div class="product-selector" *ngIf="featuredProducts().length > 1">
-    <div class="container">
-      <p class="selector-label">Selecciona tu estilo:</p>
-      <div class="product-thumbnails">
-        @for (product of featuredProducts(); track product.id; let i = $index) {
-        <button
-          (click)="setActiveProduct(product, i)"
-          class="product-thumbnail"
-          [class.active]="activeProduct()?.id === product.id"
-          [style.borderColor]="
-            activeProduct()?.id === product.id ? getProductColor(activeProduct()) : 'transparent'
-          "
-        >
-          <img [src]="product.imagen[0]" [alt]="product.nombre" loading="lazy" />
-          <span class="thumbnail-name">{{ product.marca }}</span>
-        </button>
-        }
+        <!-- Selector de productos destacados (miniaturas) -->
+        <div class="product-selector-inline" *ngIf="featuredProducts().length > 1">
+          <p class="selector-label">Selecciona tu estilo:</p>
+          <div class="product-thumbnails">
+            @for (product of featuredProducts(); track product.id; let i = $index) {
+            <button
+              (click)="setActiveProduct(product, i)"
+              class="product-thumbnail"
+              [class.active]="activeProduct()?.id === product.id"
+              [style.borderColor]="
+                activeProduct()?.id === product.id
+                  ? getProductColor(activeProduct())
+                  : 'transparent'
+              "
+            >
+              <img [src]="product.imagen[0]" [alt]="product.nombre" loading="lazy" />
+              <span class="thumbnail-name">{{ product.marca }}</span>
+            </button>
+            }
+          </div>
+        </div>
       </div>
     </div>
   </div>
