@@ -11,16 +11,16 @@
       <!-- Navigation Links -->
       <ul class="nav-links">
         <li><a routerLink="/home">Inicio</a></li>
-        <li><a href="#products">Productos</a></li>
-       
-        <li><a href="#contact">Contacto</a></li>
+        <li><a (click)="scrollToSection('products')" style="cursor: pointer">Productos</a></li>
+
+        <li><a (click)="scrollToSection('contact')" style="cursor: pointer">Contacto</a></li>
       </ul>
 
       <!-- Cart Icon -->
       <div class="cart-icon" routerLink="/home/cart" style="cursor: pointer">
         <lucide-icon [img]="CartIcon" class="cart-icon-svg"></lucide-icon>
         @if (cartItemCount > 0) {
-        <span class="cart-count">{{ cartItemCount }}</span>
+          <span class="cart-count">{{ cartItemCount }}</span>
         }
       </div>
     </div>

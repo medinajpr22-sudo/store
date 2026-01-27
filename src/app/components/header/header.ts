@@ -27,6 +27,7 @@ import {
 } from 'lucide-angular';
 import { CartService } from '../../core/services/cart.service';
 import { Subscription } from 'rxjs';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -63,7 +64,10 @@ export class HeaderComponent implements OnChanges, OnInit, OnDestroy {
   cartItemCount: number = 0;
   private cartSubscription!: Subscription;
 
-  constructor(private cartService: CartService) {}
+  constructor(
+    private cartService: CartService,
+    private viewportScroller: ViewportScroller,
+  ) {}
 
   // Navegación
   navItems = [
@@ -121,6 +125,14 @@ export class HeaderComponent implements OnChanges, OnInit, OnDestroy {
 
   closeMenu() {
     this.isMenuOpen.set(false);
+  }
+
+  // Función para scroll suave a una sección
+  scrollToSection(sectionId: string) {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
 
   // Función para aclarar el color (para hover effects)

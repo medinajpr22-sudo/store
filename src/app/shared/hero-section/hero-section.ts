@@ -90,6 +90,14 @@ export class HeroSection implements OnInit {
     }
   }
 
+  // Función para scroll suave a una sección
+  scrollToSection(sectionId: string) {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
   // Escuchar movimiento del mouse en toda la ventana
   @HostListener('document:mousemove', ['$event'])
   onGlobalMouseMove(event: MouseEvent) {
